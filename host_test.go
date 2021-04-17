@@ -7,7 +7,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/yookoala/gofast"
+	"github.com/cyber-claws/gofast"
 )
 
 func TestHandler(t *testing.T) {

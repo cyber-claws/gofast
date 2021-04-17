@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/yookoala/gofast"
+	"github.com/cyber-claws/gofast"
 )
 
 // NewHandler returns a fastcgi web server implementation as an http.Handler

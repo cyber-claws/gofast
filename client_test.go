@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/yookoala/gofast"
+	"github.com/cyber-claws/gofast"
 )
 
 func init() {

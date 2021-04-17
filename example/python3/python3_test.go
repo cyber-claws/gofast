@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/yookoala/gofast/example/python3"
+	"github.com/cyber-claws/gofast/example/python3"
 )
 
 func examplePath() string {

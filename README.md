@@ -21,14 +21,14 @@
 * [Licence](#licence)
 
 [fastcgi]: http://www.mit.edu/~yandros/doc/specs/fcgi-spec.html
-[godoc]: https://godoc.org/github.com/yookoala/gofast
-[godoc-badge]: https://godoc.org/github.com/yookoala/gofast?status.svg
+[godoc]: https://godoc.org/github.com/cyber-claws/gofast
+[godoc-badge]: https://godoc.org/github.com/cyber-claws/gofast?status.svg
 [travis]: https://travis-ci.com/github/yookoala/gofast?branch=main
 [travis-badge]: https://api.travis-ci.com/yookoala/gofast.svg?branch=main
-[github-action]: https://github.com/yookoala/gofast/actions?query=workflow%3ATests+branch%3Amain
-[github-action-badge]: https://github.com/yookoala/gofast/workflows/Tests/badge.svg?branch=main
-[goreport]: https://goreportcard.com/report/github.com/yookoala/gofast
-[goreport-badge]: https://goreportcard.com/badge/github.com/yookoala/gofast
+[github-action]: https://github.com/cyber-claws/gofast/actions?query=workflow%3ATests+branch%3Amain
+[github-action-badge]: https://github.com/cyber-claws/gofast/workflows/Tests/badge.svg?branch=main
+[goreport]: https://goreportcard.com/report/github.com/cyber-claws/gofast
+[goreport-badge]: https://goreportcard.com/badge/github.com/cyber-claws/gofast
 [golang]: https://golang.org
 
 ## What does it do, really?
@@ -91,7 +91,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/yookoala/gofast"
+	"github.com/cyber-claws/gofast"
 )
 
 func main() {
@@ -135,7 +135,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/yookoala/gofast"
+	"github.com/cyber-claws/gofast"
 )
 
 func main() {
@@ -192,7 +192,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/yookoala/gofast"
+	"github.com/cyber-claws/gofast"
 )
 
 func main() {
@@ -240,12 +240,12 @@ func main() {
 </div>
 </details>
 
-[gofast-basicsession]: https://godoc.org/github.com/yookoala/gofast#BasicSession
-[gofast-request]: https://godoc.org/github.com/yookoala/gofast#Request
-[gofast-client]: https://godoc.org/github.com/yookoala/gofast#Client
-[gofast-phpfs]: https://godoc.org/github.com/yookoala/gofast#NewPHPFS
-[gofast-file-endpoint]: https://godoc.org/github.com/yookoala/gofast#NewFileEndpoint
-[gofast-middleware]: https://godoc.org/github.com/yookoala/gofast#Middleware
+[gofast-basicsession]: https://godoc.org/github.com/cyber-claws/gofast#BasicSession
+[gofast-request]: https://godoc.org/github.com/cyber-claws/gofast#Request
+[gofast-client]: https://godoc.org/github.com/cyber-claws/gofast#Client
+[gofast-phpfs]: https://godoc.org/github.com/cyber-claws/gofast#NewPHPFS
+[gofast-file-endpoint]: https://godoc.org/github.com/cyber-claws/gofast#NewFileEndpoint
+[gofast-middleware]: https://godoc.org/github.com/cyber-claws/gofast#Middleware
 
 #### FastCGI Authorizer
 
@@ -297,7 +297,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/yookoala/gofast"
+	"github.com/cyber-claws/gofast"
 )
 
 func myApp() http.Handler {
@@ -355,7 +355,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/yookoala/gofast"
+	"github.com/cyber-claws/gofast"
 )
 
 func main() {
@@ -402,7 +402,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/yookoala/gofast"
+	"github.com/cyber-claws/gofast"
 )
 
 func main() {
@@ -472,8 +472,8 @@ To fix an existing bug or implement a new feature, please:
 4. Open a pull request referencing the issue.
 5. Have fun :-)
 
-[issue tracker]: https://github.com/yookoala/gofast/issues
-[pull requests]: https://github.com/yookoala/gofast/pulls
+[issue tracker]: https://github.com/cyber-claws/gofast/issues
+[pull requests]: https://github.com/cyber-claws/gofast/pulls
 
 
 ## Licence
