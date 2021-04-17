@@ -1,6 +1,7 @@
 package gofast
 
 import (
+	"embed"
 	"fmt"
 	"net"
 	"net/http"
@@ -373,6 +374,65 @@ func MapFilterRequest(fs http.FileSystem) Middleware {
 	}
 }
 
+// MapFilterRequestTemp changes the request role to RoleFilter and add the
+// Data stream from the given file system, if file exists. Also
+// set the required params to request.
+//
+// If the file do not exists or cannot be opened, the middleware
+// will return empty response pipe and the error.
+//
+// TODO: merge this functionality with the above.
+func MapFilterRequestTemp(fs embed.FS) Middleware {
+	return func(inner SessionHandler) SessionHandler {
+		return func(client Client, req *Request) (*ResponsePipe, error) {
+
+			// force role to be RoleFilter
+			req.Role = RoleFilter
+
+			// define some required cgi parameters
+			// with the given http request
+			r := req.Raw
+			fastcgiScriptName := r.URL.Path
+
+			var fastcgiPathInfo string
+			pathinfoRe := regexp.MustCompile(`^(.+\.php)(/?.+)$`)
+			if matches := pathinfoRe.FindStringSubmatch(fastcgiScriptName); len(matches) > 0 {
+				fastcgiScriptName, fastcgiPathInfo = matches[1], matches[2]
+			}
+
+			req.Params["PATH_INFO"] = fastcgiPathInfo
+			req.Params["SCRIPT_NAME"] = fastcgiScriptName
+			req.Params["DOCUMENT_URI"] = r.URL.Path
+
+			// handle directory index
+			urlPath := r.URL.Path
+			if strings.HasSuffix(urlPath, "/") {
+				urlPath = path.Join(urlPath, "index.php")
+			}
+
+			// find the file
+			f, err := fs.Open(urlPath)
+			if err != nil {
+				err = fmt.Errorf("cannot open file: %s", err)
+				return nil, err
+			}
+
+			// map fcgi params for filtering
+			s, err := f.Stat()
+			if err != nil {
+				err = fmt.Errorf("cannot stat file: %s", err)
+				return nil, err
+			}
+			req.Params["FCGI_DATA_LAST_MOD"] = fmt.Sprintf("%d", s.ModTime().Unix())
+			req.Params["FCGI_DATA_LENGTH"] = fmt.Sprintf("%d", s.Size())
+
+			// use the file as FCGI_DATA in request
+			req.Data = f
+			return inner(client, req)
+		}
+	}
+}
+
 // NewFilterLocalFS is a shortcut to use NewFilterFS with
 // a http.FileSystem created for the given local folder.
 func NewFilterLocalFS(root string) Middleware {
@@ -388,6 +448,17 @@ func NewFilterFS(fs http.FileSystem) Middleware {
 		BasicParamsMap,
 		MapHeader,
 		MapFilterRequest(fs),
+	)
+}
+
+// NewFilterFS chains BasicParamsMap, MapHeader and MapFilterRequest
+// to implement Middleware that prepares a fastcgi Filter session
+// environment.
+func NewFilterFSTemp(fs embed.FS) Middleware {
+	return Chain(
+		BasicParamsMap,
+		MapHeader,
+		MapFilterRequestTemp(fs),
 	)
 }
 
